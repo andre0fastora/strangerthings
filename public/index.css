@@ -13,10 +13,14 @@ body {
   min-height: 40px;
 }
 
-#links{
+#links {
   display: flex;
-  justify-content: flex-end;
-  margin-right: 2vw;
+  justify-content: space-between;
+  margin-right: 5vw;
+}
+
+#links h5 {
+  margin-right: 1vw;
 }
 
 #home-page-div {
@@ -42,7 +46,7 @@ body {
   border: none;
   border-bottom: 1px solid black;
 }
-#postcard-container{
+#postcard-container {
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
@@ -54,7 +58,7 @@ body {
   border: 1px solid black;
   box-shadow: 2px 2px black;
 }
-#postcard-container button{
+#postcard-container button {
   background-color: transparent;
   color: #16537e;
   border-color: #16537e;
@@ -64,4 +68,21 @@ body {
   margin-top: 2vh;
 }
 
+#registration-div {
+  display: flex;
+  flex-direction: column;
+}
 
+#registration-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+#registration-form input,
+label,
+button {
+  margin-top: 1vh;
+}
