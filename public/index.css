@@ -4,12 +4,19 @@ body {
 
 #navbar {
   background-color: black;
+  justify-content: space-between;
   color: white;
   display: flex;
   align-items: center;
   flex-grow: 1;
   max-height: 10%;
   min-height: 40px;
+}
+
+#links{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2vw;
 }
 
 #home-page-div {
@@ -35,3 +42,26 @@ body {
   border: none;
   border-bottom: 1px solid black;
 }
+#postcard-container{
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vh;
+  padding-left: 1vw;
+  border: 1px solid black;
+  box-shadow: 2px 2px black;
+}
+#postcard-container button{
+  background-color: transparent;
+  color: #16537e;
+  border-color: #16537e;
+  width: 20%;
+  height: 40px;
+  margin-bottom: 1vh;
+  margin-top: 2vh;
+}
+
+
