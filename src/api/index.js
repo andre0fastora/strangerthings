@@ -23,8 +23,30 @@ export const addNewUserToDatabase = async (userName, password) => {
       }),
     });
     const result = await response.json();
+    console.log(result.data.token);
+    return result.data.token;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const loginToDatabase = async (userName, password) => {
+  try {
+    const response = await fetch(`${BASE}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: userName,
+          password: password,
+        },
+      }),
+    });
+    const result = await response.json();
     console.log(result);
-    return result;
+    return result.data.token;
   } catch (error) {
     console.log(error);
   }

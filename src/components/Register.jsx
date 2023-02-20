@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { addNewUserToDatabase } from "../api";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Register = (props) => {
   const [newUserName, setNewUserName] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  const token = props.token
+  const setToken = props.setToken
   const navigate = useNavigate();
 
   const sendNewUser = async () => {
@@ -15,6 +17,7 @@ const Register = () => {
       newPassword.length >= 6
     ) {
       const data = await addNewUserToDatabase(newUserName, confirmedPassword);
+      setToken(data)
       setNewUserName("");
       setNewPassword("");
       setConfirmedPassword("");
