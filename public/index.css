@@ -86,3 +86,21 @@ label,
 button {
   margin-top: 1vh;
 }
+
+#new-post-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto 0 auto;
+}
+
+#new-post-form input,
+textarea,
+label {
+  padding: 1vh;
+  margin: 1vh;
+}
+
+#new-post-h1 {
+  text-align: center;
+}

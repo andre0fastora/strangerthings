@@ -57,12 +57,64 @@ export const fetchUserData = async (token) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    })
-    const result = await response.json()
-    return result
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    return result;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
+
+export const addNewPostToDatabase = async (
+  title,
+  desc,
+  price,
+  deliver,
+  token
+) => {
+  try {
+    const response = await fetch(`${BASE}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: desc,
+          price: price,
+          willDeliver: deliver,
+        },
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addNewMessageToDatabase = async (content, postId ,token) => {
+  try {
+    const response = await fetch(`${BASE}/posts/${postId}/messages`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        message: {
+          content: content
+        },
+      }),
+    });
+    const result = await response.json();
+    console.log(result)
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
