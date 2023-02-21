@@ -6,8 +6,8 @@ const Register = (props) => {
   const [newUserName, setNewUserName] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const token = props.token
   const setToken = props.setToken
+  const setLoggedIn = props.setLoggedIn
   const navigate = useNavigate();
 
   const sendNewUser = async () => {
@@ -21,6 +21,7 @@ const Register = (props) => {
       setNewUserName("");
       setNewPassword("");
       setConfirmedPassword("");
+      setLoggedIn(true)
       alert("Registration succesful!");
       navigate("/");
     } else {

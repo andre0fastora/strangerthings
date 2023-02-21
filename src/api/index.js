@@ -45,9 +45,24 @@ export const loginToDatabase = async (userName, password) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
-    return result.data.token;
+    return result;
   } catch (error) {
     console.log(error);
   }
 };
+
+export const fetchUserData = async (token) => {
+  try {
+    const response = await fetch(`${BASE}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    const result = await response.json()
+    return result
+  } catch (error) {
+    console.log(error)
+  }
+}
