@@ -12,7 +12,7 @@ const NewMessage = (props) => {
         onSubmit={(e) => {
           e.preventDefault();
           addNewMessageToDatabase(content, id, token);
-          alert("Your message was succesfully sent");
+          alert("Your message was successfully sent");
           setContent("");
         }}
         id="new-message-form"

@@ -1,7 +1,29 @@
 import React from "react";
 
-const Profile = () => {
-  return <h1>I am profile</h1>;
+const Profile = (props) => {
+  const currentUser = props.currentUser
+  const token = props.token
+  const messages = currentUser.data.messages
+
+  console.log(messages)
+
+  return (
+    <div id="profile-div">
+      <div id="profile-header">
+        <h1>{`Welcome ${currentUser.data.username}`}</h1>
+        <h3>Messages to me:</h3>
+      </div>
+        {
+          messages.map((msg,idx)=>{
+            return <div id="profile-messages" key={`${idx}:${msg._id}`}>
+              <h3>{`From: ${msg.fromUser.username}`}</h3>
+              <p>{msg.content}</p>
+              <p>This will be link to post</p>
+            </div>
+          }) 
+        }
+    </div>
+  )
 };
 
 export default Profile;

@@ -8,3 +8,4 @@ export { default as Register } from "./Register";
 export { default as Profile } from "./Profile";
 export { default as AddPost } from "./AddPost";
 export { default as NewMessage } from "./NewMessage";
+export { default as SinglePost } from "./SinglePost"

@@ -8,6 +8,7 @@ import {
   Profile,
   AddPost,
   NewMessage,
+  SinglePost,
 } from "./";
 import { Routes, Route, useParams } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const Main = () => {
   const [token, setToken] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [posts, setPosts] = useState([]);
 
   return (
     <div id="main">
@@ -36,7 +38,10 @@ const Main = () => {
             />
           }
         />
-        <Route path="/posts" element={<Posts loggedIn={loggedIn} />} />
+        <Route
+          path="/posts"
+          element={<Posts posts={posts} setPosts={setPosts} loggedIn={loggedIn} currentUser={currentUser} />}
+        />
         <Route
           path="/login"
           element={
@@ -52,9 +57,13 @@ const Main = () => {
           path="/register"
           element={<Register setToken={setToken} setLoggedIn={setLoggedIn} />}
         />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={<Profile currentUser={currentUser} token={token} />}
+        />
         <Route path="/addpost" element={<AddPost token={token} />} />
         <Route path="/newmessage/:id" element={<NewMessage token={token} />} />
+        <Route path="/posts/:postID" element={<SinglePost posts={posts} setPosts={setPosts} />} />
       </Routes>
     </div>
   );

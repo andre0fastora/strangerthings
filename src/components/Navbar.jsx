@@ -18,6 +18,13 @@ const Navbar = (props) => {
         <h2> Stranger's Things</h2>
       </Link>
       <div id="links">
+        {loggedIn ? <Link to="/profile"
+        style={{
+          textDecoration: "none",
+          color: "white",
+        }}
+        ><h5>Profile</h5></Link> : null}
+
         <Link
           to="/posts"
           style={{

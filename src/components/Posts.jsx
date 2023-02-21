@@ -5,7 +5,10 @@ import { fetchPosts } from "../api";
 
 const Posts = (props) => {
   const loggedIn = props.loggedIn;
-  const [posts, setPosts] = useState([]);
+  const posts = props.posts
+  const setPosts = props.setPosts
+  const currentUser = props.currentUser
+  
   const getPosts = async () => {
     const data = await fetchPosts();
     setPosts(data);
@@ -33,11 +36,12 @@ const Posts = (props) => {
       <div>
         {posts.map((post) => {
           return (
-            <PostCard
-              post={post}
-              key={`post: ${post._id}`}
-              loggedIn={loggedIn}
-            />
+              <PostCard
+                post={post}
+                key={`post: ${post._id}`}
+                currentUser={currentUser}
+                loggedIn={loggedIn}
+              />
           );
         })}
       </div>

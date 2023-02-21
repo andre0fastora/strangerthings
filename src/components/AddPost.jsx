@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { addNewPostToDatabase } from "../api";
+import { useNavigate } from "react-router-dom";
 const AddPosts = (props) => {
   const token = props.token;
   let title = "";
@@ -8,6 +9,7 @@ const AddPosts = (props) => {
   let location = "";
   let willingToDeliver = false;
   let data = {};
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -22,7 +24,7 @@ const AddPosts = (props) => {
             willingToDeliver,
             token
           );
-          console.log(data);
+          navigate("/posts")
         }}
         id="new-post-form"
       >
@@ -38,7 +40,6 @@ const AddPosts = (props) => {
         <textarea
           onChange={(e) => {
             description = e.target.value;
-            console.log(description);
           }}
           placeholder="description"
           form_id="new-post-form"
