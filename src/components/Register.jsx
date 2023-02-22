@@ -6,8 +6,8 @@ const Register = (props) => {
   const [newUserName, setNewUserName] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const setToken = props.setToken
-  const setLoggedIn = props.setLoggedIn
+  const setToken = props.setToken;
+  const setLoggedIn = props.setLoggedIn;
   const navigate = useNavigate();
 
   const sendNewUser = async () => {
@@ -17,11 +17,11 @@ const Register = (props) => {
       newPassword.length >= 6
     ) {
       const data = await addNewUserToDatabase(newUserName, confirmedPassword);
-      setToken(data)
+      setToken(data);
       setNewUserName("");
       setNewPassword("");
       setConfirmedPassword("");
-      setLoggedIn(true)
+      setLoggedIn(true);
       alert("Registration succesful!");
       navigate("/");
     } else {

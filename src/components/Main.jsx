@@ -40,7 +40,15 @@ const Main = () => {
         />
         <Route
           path="/posts"
-          element={<Posts posts={posts} setPosts={setPosts} loggedIn={loggedIn} currentUser={currentUser} />}
+          element={
+            <Posts
+              token={token}
+              posts={posts}
+              setPosts={setPosts}
+              loggedIn={loggedIn}
+              currentUser={currentUser}
+            />
+          }
         />
         <Route
           path="/login"
@@ -63,7 +71,7 @@ const Main = () => {
         />
         <Route path="/addpost" element={<AddPost token={token} />} />
         <Route path="/newmessage/:id" element={<NewMessage token={token} />} />
-        <Route path="/posts/:postID" element={<SinglePost posts={posts} setPosts={setPosts} />} />
+        <Route path="/posts/:postID" element={<SinglePost token={token} />} />
       </Routes>
     </div>
   );

@@ -5,7 +5,7 @@ import NewMessage from "./NewMessage";
 const PostCard = (props) => {
   const post = props.post;
   const loggedIn = props.loggedIn;
-  const currentUser = props.currentUser
+  const currentUser = props.currentUser;
   const navigate = useNavigate();
 
   return (
@@ -26,14 +26,18 @@ const PostCard = (props) => {
           {post.location}
         </p>
       </div>
-      {currentUser.success && currentUser.data.username !== post.author.username ? <button
-        onClick={() => {
-          loggedIn ? navigate(`/newmessage/${post._id}`) : navigate("/login");
-        }}
-      >
-        Send Message
-      </button> : null}
-      <Link to={`/posts/${post._id}`} ><button>View Post</button></Link>
+      {currentUser.success && !post.isAuthor ? (
+        <button
+          onClick={() => {
+            loggedIn ? navigate(`/newmessage/${post._id}`) : navigate("/login");
+          }}
+        >
+          Send Message
+        </button>
+      ) : null}
+      <Link to={`/posts/${post._id}`} state={post}>
+        <button>View Post</button>
+      </Link>
     </div>
   );
 };

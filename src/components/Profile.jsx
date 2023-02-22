@@ -1,11 +1,15 @@
 import React from "react";
 
 const Profile = (props) => {
-  const currentUser = props.currentUser
-  const token = props.token
-  const messages = currentUser.data.messages
+  const currentUser = props.currentUser;
+  const token = props.token;
+  const messages = currentUser.data.messages;
 
-  console.log(messages)
+  console.log(messages);
+
+  let filteredArray = messages.filter(
+    (msg) => msg.fromUser.username !== currentUser.data.username
+  );
 
   return (
     <div id="profile-div">
@@ -13,17 +17,17 @@ const Profile = (props) => {
         <h1>{`Welcome ${currentUser.data.username}`}</h1>
         <h3>Messages to me:</h3>
       </div>
-        {
-          messages.map((msg,idx)=>{
-            return <div id="profile-messages" key={`${idx}:${msg._id}`}>
-              <h3>{`From: ${msg.fromUser.username}`}</h3>
-              <p>{msg.content}</p>
-              <p>This will be link to post</p>
-            </div>
-          }) 
-        }
+      {filteredArray.map((msg, idx) => {
+        return (
+          <div id="profile-messages" key={`${idx}:${msg._id}`}>
+            <h3>{`From: ${msg.fromUser.username}`}</h3>
+            <p>{msg.content}</p>
+            <p>This will be link to post</p>
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 };
 
 export default Profile;
