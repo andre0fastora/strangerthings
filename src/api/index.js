@@ -143,3 +143,29 @@ export const deletePostFromDatabase = async (postId, token) => {
     console.log(error);
   }
 };
+
+export const editPostInDatabase = async (postId, token, title, description, price, location, deliver) => {
+  try {
+    const response = await fetch(`${BASE}/posts/${postId}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          location: location,
+          willDeliver: deliver
+        }
+      })
+    })
+    const result = await response.json()
+    console.log(result)
+    return result
+  } catch (error) {
+    console.log(error)
+  }
+}

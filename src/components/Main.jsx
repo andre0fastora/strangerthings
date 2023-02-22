@@ -9,6 +9,7 @@ import {
   AddPost,
   NewMessage,
   SinglePost,
+  EditPost,
 } from "./";
 import { Routes, Route, useParams } from "react-router-dom";
 
@@ -72,6 +73,7 @@ const Main = () => {
         <Route path="/addpost" element={<AddPost token={token} />} />
         <Route path="/newmessage/:id" element={<NewMessage token={token} />} />
         <Route path="/posts/:postID" element={<SinglePost token={token} />} />
+        <Route path="/posts/edit/:postID" element={<EditPost token={token} />} />
       </Routes>
     </div>
   );

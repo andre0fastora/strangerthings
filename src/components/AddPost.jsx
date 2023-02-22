@@ -50,7 +50,7 @@ const AddPosts = (props) => {
             price = e.target.value;
           }}
           placeholder="Price"
-          type={"text"}
+          type={"number"}
         />
 
         <input

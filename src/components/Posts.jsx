@@ -9,6 +9,24 @@ const Posts = (props) => {
   const setPosts = props.setPosts;
   const currentUser = props.currentUser;
   const token = props.token;
+  const [searchVal, setSearchVal] = useState("")
+  let filteredArray = [...posts]
+
+
+  const filteringSearch = () => {
+    filteredArray = posts.filter(post => {
+      if(post.title.toLowerCase().includes(searchVal.toLowerCase()) || post.price.toLowerCase().includes(searchVal.toLowerCase()) || post.description.toLowerCase().includes(searchVal.toLowerCase()) || post.location.toLowerCase().includes(searchVal.toLowerCase()) || post.author.username.toLowerCase().includes(searchVal.toLowerCase())){
+        return true
+      }else{
+        return false
+      }
+    })
+    return filteredArray
+  }
+
+
+  
+
 
   const getPosts = async () => {
     const data = await fetchPosts(token);
@@ -23,7 +41,9 @@ const Posts = (props) => {
     <div>
       <div id="posts-header-div">
         <h1>Posts</h1>
-        <input placeholder="search" type="text" />
+        <input placeholder="search" type="text" onChange={(e)=>{
+          setSearchVal(e.target.value)
+        }} />
         {loggedIn ? (
           <Link to="/addpost">
             <p>Add Post</p>
@@ -35,7 +55,7 @@ const Posts = (props) => {
         )}
       </div>
       <div>
-        {posts.map((post) => {
+        {filteringSearch().map((post) => {
           return (
             <PostCard
               post={post}

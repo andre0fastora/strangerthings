@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 import { fetchPosts } from "../api";
 import { deletePostFromDatabase } from "../api";
+import {EditPost} from "./";
+
 const SinglePost = (props) => {
   let location = useLocation();
   const navigate = useNavigate();
   let post = location.state;
   let messagesArray = post.messages;
   const token = props.token;
+  const renderArray = ['oneItem']
 
   const deletePost = async () => {
     await deletePostFromDatabase(post._id, token);
@@ -15,7 +18,7 @@ const SinglePost = (props) => {
     navigate("/posts");
   };
 
-  console.log(post);
+
 
   let { postID } = useParams();
 
@@ -33,7 +36,7 @@ const SinglePost = (props) => {
 
         {post.isAuthor ? (
           <>
-            <button>Edit</button>
+            <Link to={`/posts/edit/${post._id}`} state={post}><button>Edit</button></Link>
             <button
               onClick={() => {
                 deletePost();
@@ -43,8 +46,9 @@ const SinglePost = (props) => {
             </button>
           </>
         ) : null}
+      <Link to="/posts" ><h3>Back to all Posts</h3></Link>
       </div>
-      <h3>Messages for this post</h3>
+      {post.isAuthor ? <h3>Messages for this post</h3> : null}
       {messagesArray.map((msg, idx) => {
         return (
           <div id="profile-messages" key={`${idx}:${msg._id}`}>
