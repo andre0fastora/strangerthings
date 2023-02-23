@@ -71,9 +71,21 @@ const Main = () => {
           element={<Profile currentUser={currentUser} token={token} />}
         />
         <Route path="/addpost" element={<AddPost token={token} />} />
-        <Route path="/newmessage/:id" element={<NewMessage token={token} />} />
+        <Route
+          path="/newmessage/:id"
+          element={
+            <NewMessage
+              setCurrentUser={setCurrentUser}
+              currentUser={currentUser}
+              token={token}
+            />
+          }
+        />
         <Route path="/posts/:postID" element={<SinglePost token={token} />} />
-        <Route path="/posts/edit/:postID" element={<EditPost token={token} />} />
+        <Route
+          path="/posts/edit/:postID"
+          element={<EditPost token={token} />}
+        />
       </Routes>
     </div>
   );
