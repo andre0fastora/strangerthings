@@ -36,7 +36,7 @@ const PostCard = (props) => {
         </button>
       ) : null}
       <Link to={`/posts/${post._id}`} state={post}>
-        <button>View Post</button>
+        {loggedIn ? <button>View Post</button> : null}
       </Link>
     </div>
   );

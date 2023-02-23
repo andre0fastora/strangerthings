@@ -4,18 +4,28 @@ import { Link } from "react-router-dom"
 
 const Home = (props) => {
   const loggedIn = props.loggedIn
+  const setLoggedIn = props.setLoggedIn
   const token = props.token
   const currentUser = props.currentUser
   const setCurrentUser = props.setCurrentUser
 
   const getUserData = async () => {
-    const userData = await fetchUserData(token)
+    const localStorageData = localStorage.getItem('token')
+    let userData = ''
+    if(localStorageData){
+      userData = await fetchUserData(localStorageData)
+      setLoggedIn(true)
+    }else if(token){
+      userData = await fetchUserData(token)
+      setLoggedIn(true)
+    }
     setCurrentUser(userData)
+    console.log(currentUser)
   }
 
   useEffect(()=>{
     getUserData()
-  },[token])
+  },[loggedIn])
 
   
   return (

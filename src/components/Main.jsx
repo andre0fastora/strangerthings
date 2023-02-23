@@ -19,6 +19,7 @@ const Main = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [posts, setPosts] = useState([]);
 
+
   return (
     <div id="main">
       <Navbar
@@ -32,6 +33,7 @@ const Main = () => {
           path="/"
           element={
             <Home
+              setLoggedIn={setLoggedIn}
               loggedIn={loggedIn}
               token={token}
               setCurrentUser={setCurrentUser}
@@ -81,7 +83,7 @@ const Main = () => {
             />
           }
         />
-        <Route path="/posts/:postID" element={<SinglePost token={token} />} />
+        <Route path="/posts/:postID" element={<SinglePost posts={posts} loggedIn={loggedIn} currentUser={currentUser} token={token} />} />
         <Route
           path="/posts/edit/:postID"
           element={<EditPost token={token} />}

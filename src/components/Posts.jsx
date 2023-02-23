@@ -9,6 +9,7 @@ const Posts = (props) => {
   const setPosts = props.setPosts;
   const currentUser = props.currentUser;
   const token = props.token;
+  const localStorageData = localStorage.getItem('token')
   const [searchVal, setSearchVal] = useState("")
   let filteredArray = [...posts]
 
@@ -29,7 +30,12 @@ const Posts = (props) => {
 
 
   const getPosts = async () => {
-    const data = await fetchPosts(token);
+    let data = ''
+    if(localStorageData){
+      data = await fetchPosts(localStorageData)
+    }else{
+      data = await fetchPosts(token);
+    }
     setPosts(data);
   };
 

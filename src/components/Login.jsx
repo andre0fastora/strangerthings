@@ -9,12 +9,15 @@ const Login = (props) => {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
+
+
   const navigate = useNavigate();
   
   const loginUser = async () =>{
     const data = await loginToDatabase(userName, password)
     if(data.success){
       setToken(data.data.token)
+      localStorage.setItem('token', data.data.token)
       setLoggedIn(true)
       alert('Successfully logged in')
       navigate("/")

@@ -5,6 +5,9 @@ const Profile = (props) => {
   const currentUser = props.currentUser;
   const token = props.token;
   const messages = currentUser.data.messages;
+  const allUserPosts = currentUser.data.posts
+
+  
 
   console.log(currentUser)
 
@@ -19,7 +22,6 @@ const Profile = (props) => {
         <h3>Messages to me:</h3>
       </div>
       {filteredArray.map((msg, idx) => {
-        console.log(msg)
         return (
           <div id="profile-messages" key={`${idx}:${msg._id}`}>
             <h3>{`From: ${msg.fromUser.username}`}</h3>

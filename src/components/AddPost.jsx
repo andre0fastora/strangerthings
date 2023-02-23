@@ -3,6 +3,7 @@ import { addNewPostToDatabase } from "../api";
 import { useNavigate } from "react-router-dom";
 const AddPosts = (props) => {
   const token = props.token;
+  let localStorageData = localStorage.getItem('token')
   let title = "";
   let description = "";
   let price = 0;
@@ -17,13 +18,24 @@ const AddPosts = (props) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          data = addNewPostToDatabase(
-            title,
-            description,
-            price,
-            willingToDeliver,
-            token
-          );
+          if(localStorageData){
+            data = addNewPostToDatabase(
+              title,
+              description,
+              price,
+              willingToDeliver,
+              localStorageData
+            );
+            console.log(data)
+          }else{
+            data = addNewPostToDatabase(
+              title,
+              description,
+              price,
+              willingToDeliver,
+              token
+            );
+          }
           navigate("/posts")
         }}
         id="new-post-form"

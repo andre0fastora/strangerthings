@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
   const loggedIn = props.loggedIn
   const setLoggedIn = props.setLoggedIn
   const setToken = props.setToken
+  const navigate = useNavigate()
 
   return (
     <div id="navbar">
@@ -51,8 +52,10 @@ const Navbar = (props) => {
         }}
         >
           <h5 onClick={()=>{
+            localStorage.removeItem('token')
             setLoggedIn(false)
             setToken('')
+            navigate('/')
           }}>Logout</h5>
         </Link>
       }
