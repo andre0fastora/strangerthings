@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Home,
@@ -12,13 +12,31 @@ import {
   EditPost,
 } from "./";
 import { Routes, Route, useParams } from "react-router-dom";
+import { fetchUserData } from "../api";
 
 const Main = () => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [posts, setPosts] = useState([]);
 
+  const getUserData = async () => {
+    const localStorageData = localStorage.getItem("token");
+    let userData = "";
+    if (localStorageData) {
+      userData = await fetchUserData(localStorageData);
+      setLoggedIn(true);
+    } else if (token) {
+      userData = await fetchUserData(token);
+      setLoggedIn(true);
+    }
+    setCurrentUser(userData);
+    console.log(currentUser);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, [loggedIn]);
 
   return (
     <div id="main">
@@ -83,7 +101,17 @@ const Main = () => {
             />
           }
         />
-        <Route path="/posts/:postID" element={<SinglePost posts={posts} loggedIn={loggedIn} currentUser={currentUser} token={token} />} />
+        <Route
+          path="/posts/:postID"
+          element={
+            <SinglePost
+              posts={posts}
+              loggedIn={loggedIn}
+              currentUser={currentUser}
+              token={token}
+            />
+          }
+        />
         <Route
           path="/posts/edit/:postID"
           element={<EditPost token={token} />}

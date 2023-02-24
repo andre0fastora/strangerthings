@@ -17,7 +17,9 @@ const Register = (props) => {
       newPassword.length >= 6
     ) {
       const data = await addNewUserToDatabase(newUserName, confirmedPassword);
-      setToken(data);
+      localStorage.setItem("token", data);
+      console.log(data);
+
       setNewUserName("");
       setNewPassword("");
       setConfirmedPassword("");

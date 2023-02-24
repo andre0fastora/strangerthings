@@ -5,8 +5,8 @@ const NewMessage = (props) => {
   let token = props.token;
   let currentUser = props.currentUser;
   let setCurrentUser = props.setCurrentUser;
-  let allMesages = currentUser.data.messages;
-  let localStorageData = localStorage.getItem('token')
+  let allMesages = currentUser.success ? currentUser.data.messages : [];
+  let localStorageData = localStorage.getItem("token");
   let { id } = useParams();
   const [content, setContent] = useState("");
   const [filteredMessages, setFilteredMessages] = useState(allMesages);
@@ -29,17 +29,19 @@ const NewMessage = (props) => {
   }, [currentUser]);
 
   const getUserData = async () => {
-    let userData = ''
-    if(localStorageData){
-      userData = await fetchUserData(localStorageData)
+    let userData = "";
+    if (localStorageData) {
+      userData = await fetchUserData(localStorageData);
       setCurrentUser(userData);
-    }else{
+    } else {
       userData = await fetchUserData(token);
       setCurrentUser(userData);
     }
   };
 
-  return (
+  return !currentUser.success ? (
+    <h1>Loading</h1>
+  ) : (
     <div>
       <h1>Message History</h1>
 
@@ -55,9 +57,9 @@ const NewMessage = (props) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if(localStorageData){
-            addNewMessageToDatabase(content,id,localStorageData)
-          }else{
+          if (localStorageData) {
+            addNewMessageToDatabase(content, id, localStorageData);
+          } else {
             addNewMessageToDatabase(content, id, token);
           }
           alert("Your message was successfully sent");

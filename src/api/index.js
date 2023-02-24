@@ -78,7 +78,8 @@ export const addNewPostToDatabase = async (
   desc,
   price,
   deliver,
-  token
+  token,
+  location
 ) => {
   try {
     const response = await fetch(`${BASE}/posts`, {
@@ -92,7 +93,9 @@ export const addNewPostToDatabase = async (
           title: title,
           description: desc,
           price: price,
+          location: location,
           willDeliver: deliver,
+
         },
       }),
     });
