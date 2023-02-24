@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import loading from '../gifs-and-fonts/loading-loading-forever.gif'
 
 const Profile = (props) => {
   const currentUser = props.currentUser;
@@ -12,7 +13,9 @@ const Profile = (props) => {
   );
   console.log(currentUser.success);
   return !currentUser.success ? (
-    <h1>Loading...</h1>
+    <div id="loading-image">
+      <img src={loading} alt="loading-gif" style={{width: "500px", height: "500px"}} />
+    </div>
   ) : (
     <div id="profile-div">
       <div id="profile-header">

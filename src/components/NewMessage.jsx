@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { addNewMessageToDatabase, fetchUserData } from "../api";
+import loading from '../gifs-and-fonts/loading-loading-forever.gif'
+
 const NewMessage = (props) => {
   let token = props.token;
   let currentUser = props.currentUser;
@@ -40,10 +42,12 @@ const NewMessage = (props) => {
   };
 
   return !currentUser.success ? (
-    <h1>Loading</h1>
+    <div id="loading-image">
+      <img src={loading} alt="loading-gif" style={{width: "500px", height: "500px"}} />
+    </div>
   ) : (
     <div>
-      <h1>Message History</h1>
+      <h1 id="message-history-header">Message History</h1>
 
       {filteredMessages.map((msg, idx) => {
         return (

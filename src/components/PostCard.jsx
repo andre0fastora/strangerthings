@@ -11,18 +11,18 @@ const PostCard = (props) => {
   return (
     <div id="postcard-container">
       <h1>{post.title}</h1>
-      <p>{post.description}</p>
+      <pre>{post.description}</pre>
       <div id="postcard-sale-info">
         <p>
-          <b>Price:</b>
+          <b>Price: </b>
           {post.price}
         </p>
         <p>
-          <b>Seller:</b>
+          <b>Seller: </b>
           {post.author.username}
         </p>
         <p>
-          <b>Location:</b>
+          <b>Location: </b>
           {post.location}
         </p>
       </div>

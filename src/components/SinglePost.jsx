@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 import { fetchPosts } from "../api";
 import { deletePostFromDatabase } from "../api";
 import { EditPost } from "./";
+import loading from '../gifs-and-fonts/loading-loading-forever.gif'
 
 const SinglePost = (props) => {
   let location = useLocation();
@@ -16,6 +17,7 @@ const SinglePost = (props) => {
     }
   });
   let post = filterForSinglePost[0];
+
 
   let messagesArray = post ? post.messages : [];
   const currentUser = props.currentUser;
@@ -44,25 +46,27 @@ const SinglePost = (props) => {
   });
 
   return !post ? (
-    <h1>Loading</h1>
+    <div id="loading-image">
+      <img src={loading} alt="loading-gif" style={{width: "500px", height: "500px"}} />
+    </div>
   ) : (
     <div id="single-view-div">
       <div id="post-info-div">
         <h1>{post.title}</h1>
 
-        <p>{post.description}</p>
-        <p>{`Price: ${post.price}`} </p>
-        <p>{`Seller: ${post.author.username}`} </p>
-        <p>{`Willing to Deliver: ${post.willDeliver}`}</p>
-        <p>{`Location: ${post.location}`}</p>
-        <p>{`Is Active: ${post.active}`}</p>
+        <pre>{post.description}</pre>
+        <p> <b>Price: </b>{`${post.price}`} </p>
+        <p> <b>Seller: </b>{`${post.author.username}`} </p>
+        <p> <b>Willing to Deliver: </b>{`${post.willDeliver}`}</p>
+        <p><b>Location: </b>{`${post.location}`}</p>
+        <p><b>Is Active: </b>{`${post.active}`}</p>
 
         {post.isAuthor ? (
           <>
             <Link to={`/posts/edit/${post._id}`} state={post}>
-              <button>Edit</button>
+              <button id="edit-button">Edit</button>
             </Link>
-            <button
+            <button id="delete-button"
               onClick={() => {
                 deletePost();
               }}
@@ -73,7 +77,7 @@ const SinglePost = (props) => {
         ) : null}
         {post.isAuthor ? null : (
           <Link to={`/newmessage/${post._id}`}>
-            <p>Send a Message</p>{" "}
+            <h5>Send a Message</h5>
           </Link>
         )}
         <Link to="/posts">

@@ -15,66 +15,68 @@ const AddPosts = (props) => {
   return (
     <div>
       <h1 id="new-post-h1">New Post</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
 
-          data = addNewPostToDatabase(
-            title,
-            description,
-            price,
-            willingToDeliver,
-            token,
-            location
-          );
+            data = addNewPostToDatabase(
+              title,
+              description,
+              price,
+              willingToDeliver,
+              token,
+              location
+            );
 
-          navigate("/posts");
-        }}
-        id="new-post-form"
-      >
-        <input
-          placeholder="Title"
-          type={"text"}
-          required
-          onChange={(e) => {
-            title = e.target.value;
+            navigate("/posts");
           }}
-        />
+          id="new-post-form"
+        >
+          <input
+            placeholder="Title"
+            type={"text"}
+            required
+            onChange={(e) => {
+              title = e.target.value;
+            }}
+          />
 
-        <textarea
-          onChange={(e) => {
-            description = e.target.value;
-          }}
-          placeholder="description"
-          form_id="new-post-form"
-        />
+          <textarea
+            onChange={(e) => {
+              description = e.target.value;
+            }}
+            placeholder="description"
+            form_id="new-post-form"
+          />
 
-        <input
-          onChange={(e) => {
-            price = e.target.value;
-          }}
-          placeholder="Price"
-          type={"number"}
-        />
-
-        <input
-          onChange={(e) => {
-            location = e.target.value;
-          }}
-          placeholder="Location"
-          type={"text"}
-        />
-        <div>
-          <label>Willing to deliver</label>
           <input
             onChange={(e) => {
-              willingToDeliver = !willingToDeliver;
+              price = e.target.value;
             }}
-            type="checkbox"
+            placeholder="Price"
+            type={"number"}
           />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+
+          <input
+            onChange={(e) => {
+              location = e.target.value;
+            }}
+            placeholder="Location"
+            type={"text"}
+          />
+          <div>
+            <label>Willing to deliver</label>
+            <input
+              onChange={(e) => {
+                willingToDeliver = !willingToDeliver;
+              }}
+              type="checkbox"
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };

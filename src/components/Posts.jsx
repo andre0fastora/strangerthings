@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PostCard } from "./";
 import { fetchPosts } from "../api";
+import loading from '../gifs-and-fonts/loading-loading-forever.gif'
 
 const Posts = (props) => {
   const loggedIn = props.loggedIn;
@@ -53,7 +54,9 @@ const Posts = (props) => {
 
   setPosts(posts.reverse());
   return !posts.length ? (
-    <h1>Loading</h1>
+    <div id="loading-image">
+      <img src={loading} alt="loading-gif" style={{width: "500px", height: "500px"}} />
+    </div>
   ) : (
     <div>
       <div id="posts-header-div">
